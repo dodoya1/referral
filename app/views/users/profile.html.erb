@@ -1,0 +1,126 @@
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <img src="<%= "/user_images/#{@user.image_name}" %>">
+      <h2><%= @user.name %></h2>
+      <p><%= @user.email %></p>
+      <% if @user.id == @current_user.id %>
+        <%= link_to("編集", "/users/#{@user.id}/edit") %>
+      <% end %>
+      <% if @user.id != @current_user.id %>
+        <%= link_to("つながり申請", "/connects/#{@user.id}/requesting", {method: "post"}) %>
+        <%= link_to("推薦コメントを贈る", "/recommends/#{@user.id}/connecting") %>
+      <% end %>
+    </div>
+    
+    <!-- 指定されたコードを貼り付けてください -->
+    <ul class="user-tabs">
+      <li class="active"><%= link_to("プロフィール", "/users/#{@user.id}/profile") %></li>
+      <li><%= link_to("投稿", "/users/#{@user.id}") %></li>
+      <li><%= link_to("いいね!", "/users/#{@user.id}/likes") %></li>
+      <% if @user.id == @current_user.id %>
+        <li><%= link_to("つながりリクエストしてきたユーザー", "/users/#{@user.id}/requested") %></li>
+      <% end %>
+      <li><%= link_to("つながり", "/users/#{@user.id}/connected") %></li>
+      <li><%= link_to("推薦コメント", "/users/#{@user.id}/recommends") %></li>
+    </ul>
+    
+    <!-- もし、プロフィールが登録されていた場合 -->
+    <% if @user.id == @current_user.id %>
+    <% if @profile %>
+    <div class="user right">
+      <%= link_to("プロフィール編集", "/profiles/#{@user.id}/edit") %>
+    </div>
+
+    <div class="posts-index-item none-shadow">
+      <div class="left title">現在の所属</div>
+      <div class="left title profile-padding">
+        <%= @profile.current %>
+      </div>
+    </div>
+
+    <div class="posts-index-item content-top none-shadow">
+      <div class="left title">職種</div>
+      <div class="left title profile-padding">
+        <%= @profile.occupation %>
+      </div>
+    </div>
+    
+    <div class="posts-index-item content-top none-shadow">
+      <div class="left title">自己紹介</div>
+      <div class="left title profile-padding">
+        <%= @profile.introduction %>
+      </div>
+    </div>
+    
+    <div class="posts-index-item content-top none-shadow">
+      <div class="left title">できること</div>
+      <div class="left title profile-padding">
+        <%= @profile.ability %>
+      </div>
+    </div>
+    
+    <div class="posts-index-item content-top none-shadow">
+      <div class="left title">経歴</div>
+      <div class="left title profile-padding">
+        <%= @profile.career %>
+      </div>
+    </div>
+    
+    
+    
+    
+    <% else %>
+      <div class="user">
+        <%= link_to("プロフィール登録", "/profiles/new") %>
+      </div>
+    <% end %>
+    
+    <% else %>
+    <% if @profile %>
+      <div class="posts-index-item none-shadow">
+      <div class="left title">現在の所属</div>
+      <div class="left title profile-padding">
+        <%= @profile.current %>
+      </div>
+    </div>
+
+    <div class="posts-index-item content-top none-shadow">
+      <div class="left title">職種</div>
+      <div class="left title profile-padding">
+        <%= @profile.occupation %>
+      </div>
+    </div>
+    
+    <div class="posts-index-item content-top none-shadow">
+      <div class="left title">自己紹介</div>
+      <div class="left title profile-padding">
+        <%= @profile.introduction %>
+      </div>
+    </div>
+    
+    <div class="posts-index-item content-top none-shadow">
+      <div class="left title">できること</div>
+      <div class="left title profile-padding">
+        <%= @profile.ability %>
+      </div>
+    </div>
+    
+    <div class="posts-index-item content-top none-shadow">
+      <div class="left title">経歴</div>
+      <div class="left title profile-padding">
+        <%= @profile.career %>
+      </div>
+    </div>
+    <% else %>
+      <!-- 他人の譜rフィールページで、もし、プロフィールが登録されてない場合 -->
+      <h1 class="form-heading">プロフィールが登録されていません</h1>
+    <% end %>
+    
+    <% end %>
+    
+    
+    
+    
+  </div>
+</div>

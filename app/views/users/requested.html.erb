@@ -1,0 +1,55 @@
+<!-- 指定されたコードを貼り付けてください -->
+<div class="main user-show">
+  <div class="container">
+    <div class="user">
+      <img src="<%= "/user_images/#{@user.image_name}" %>">
+      <h2><%= @user.name %></h2>
+      <p><%= @user.email %></p>
+      <% if @user.id == @current_user.id %>
+        <%= link_to("編集", "/users/#{@user.id}/edit") %>
+      <% end %>
+      <% if @user.id != @current_user.id %>
+        <%= link_to("つながり申請", "/connects/#{@user.id}/requesting", {method: "post"}) %>
+        <%= link_to("推薦コメントを贈る", "/recommends/#{@user.id}/connecting") %>
+        <%= link_to("DMを送る", "/rooms/#{@user.id}/investigating") %>
+      <% end %>
+    </div>
+
+    <ul class="user-tabs">
+      <li><%= link_to("プロフィール", "/users/#{@user.id}/profile") %></li>
+      <li><%= link_to("投稿", "/users/#{@user.id}") %></li>
+      <% if @user.id == @current_user.id %>
+        <li><%= link_to("DM", "/users/#{@user.id}/rooms") %></li>
+        <li><%= link_to("求人投稿", "/users/#{@user.id}/offers") %></li>
+      <% end %>
+      <li><%= link_to("いいね!", "/users/#{@user.id}/likes") %></li>
+      <% if @user.id == @current_user.id %>
+        <li class="active"><%= link_to("つながりリクエストしてきたユーザー", "/users/#{@user.id}/requested") %></li>
+      <% end %>
+      <li><%= link_to("つながり", "/users/#{@user.id}/connected") %></li>
+      <li><%= link_to("推薦コメント", "/users/#{@user.id}/recommends") %></li>
+    </ul>
+
+    
+    <!-- 変数@likesに対してeach文を用いてください -->
+    <% @requested.each do |requested| %> 
+      <!-- 例)ユーザー2がユーザー1にリクエスト申請した。 「requesting」は、ユーザー2である。 -->
+      <!-- 「requested.requesting_id」はかなり重要な方法論である。 -->
+      <% requesting = User.find_by(id: requested.requesting_id) %>
+      
+      <div class="posts-index-item">            
+        <div class="post-left">
+          <img src="<%= "/user_images/#{requesting.image_name}" %>">
+        </div>
+        <div class="post-right">
+          <div class="post-user-name">
+            <%= link_to(requesting.name, "/users/#{requesting.id}") %>
+          </div>
+          <li><%= link_to("つながる", "/connects/#{requesting.id}/allow",{method: "post"}) %></li>
+          <li><%= link_to("今はつながらない", "/connects/#{requesting.id}/refuse",{method: "post"}) %></li>
+        </div>
+      </div>
+    <!-- each文のendを追加してください -->
+    <% end %>
+  </div>
+</div>

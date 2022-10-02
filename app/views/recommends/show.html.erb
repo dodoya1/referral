@@ -1,0 +1,22 @@
+<div class="main posts-show">
+  <div class="container">
+    <div class="posts-show-item">
+      <div class="post-user-name">
+        <img src="<%= "/user_images/#{@user.image_name}" %>">
+        <%= link_to(@user.name, "/users/#{@user.id}") %>
+      </div>
+      <p>
+        <%= @recommend.content %>
+      </p>
+      <div class="post-time">
+        <%= @recommend.created_at %>
+      </div>
+
+      <% if @user.id == @current_user.id %>
+        <div class="post-menus">
+          <%= link_to("削除", "/recommnds/#{@recommnd.id}/destroy", {method: "post"}) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

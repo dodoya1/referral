@@ -1,0 +1,63 @@
+<div class="main posts-index">
+  <div class="container">
+    <% @offers.each do |offer| %>
+        <!-- 友達限定公開の場合 -->
+        <% if offer.setting == "1" %>
+        <% @user = User.find_by(id: offer.user_id) %>
+        <% @connect1 = Connect.find_by(connecting_id: @current_user.id, connected_id: @user.id) %>
+        <% @connect2 = Connect.find_by(connecting_id: @user.id , connected_id: @current_user.id) %>
+        <!-- つながりがある場合 -->
+            <% if @connect1 || @connect2 %>
+                <div class="posts-index-item">
+                <div class="post-left">
+                <!-- ユーザーの画像が表示されるように、以下のsrcに値を追加してください -->
+                <img src="<%= "/user_images/#{@user.image_name}" %>">
+                </div>
+                <div class="post-right">
+                <div class="post-user-name">
+                    <!-- link_toメソッドを用いて、ユーザー詳細ページへのリンクを作成してください -->
+                    <%= link_to(@user.name, "/users/#{@user.id}") %>
+                </div>
+                <%= link_to(offer.title, "/offers/#{offer.id}") %>
+                </div>
+                </div>
+            <!-- つながりがない場合 -->
+            <% else %>
+                <!-- つながりがない、かつ自分自身の投稿の場合 -->
+                <% if @user.id == @current_user.id %>
+                    <div class="posts-index-item">
+                    <div class="post-left">
+                    <!-- ユーザーの画像が表示されるように、以下のsrcに値を追加してください -->
+                    <img src="<%= "/user_images/#{@user.image_name}" %>">
+                    </div>
+                    <div class="post-right">
+                    <div class="post-user-name">
+                        <!-- link_toメソッドを用いて、ユーザー詳細ページへのリンクを作成してください -->
+                        <%= link_to(@user.name, "/users/#{@user.id}") %>
+                    </div>
+                    <%= link_to(offer.title, "/offers/#{offer.id}") %>
+                    </div>
+                    </div>
+                <% else %>
+                <% end %>
+            <% end %>
+        <!-- 一般公開の場合 -->
+        <% else %>
+            <div class="posts-index-item">
+            <div class="post-left">
+            <!-- ユーザーの画像が表示されるように、以下のsrcに値を追加してください -->
+            <img src="<%= "/user_images/#{offer.user.image_name}" %>">
+            </div>
+            <div class="post-right">
+            <div class="post-user-name">
+                <!-- link_toメソッドを用いて、ユーザー詳細ページへのリンクを作成してください -->
+                <%= link_to(offer.user.name, "/users/#{offer.user.id}") %>
+            </div>
+            <%= link_to(offer.title, "/offers/#{offer.id}") %>
+            </div>
+            </div>
+        <% end %>
+      <% end %>
+    </div>
+</div>
+

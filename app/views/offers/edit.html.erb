@@ -1,0 +1,25 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">編集する</h1>
+    <%= form_tag("/offers/#{@offer.id}/update") do %>
+      <div class="form">
+        <div class="form-body">
+          <!-- 指定されたHTMLを貼り付けてください -->
+          <!-- @postのエラーが表示されるよう、「〇〇」の部分を書き換えてください -->
+          <div class="left title">タイトル</div>
+          <div class="item-description">最大30文字</div>
+          <textarea name="title"><%= @offer.title %></textarea>
+          <div class="left title">内容</div>
+          <textarea name="content"><%= @offer.content %></textarea>
+          <div class="left title">公開設定</div>
+          <div class="item-description">「全体公開」なら2を、「友達まで公開」なら1を半角数字で入力してください。</div>
+          <textarea name="setting"><%= @offer.setting %></textarea>
+          <input type="submit" value="投稿">
+          
+          
+          
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading"><%= @user.name %>さんに推薦コメントを贈る</h1>
+    <%= form_tag("/recommends/#{@user.id}/create") do %>
+      <div class="form">
+        <div class="form-body">
+          <!-- 指定されたHTMLを貼り付けてください-->
+          
+          <!-- 以下の<%= %>を用いて、初期値が表示されるようにしてください -->
+          <textarea name="content"></textarea>
+          <input type="submit" value="贈る">
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

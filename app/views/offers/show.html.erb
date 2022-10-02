@@ -1,0 +1,50 @@
+<div class="main posts-show">
+  <div class="container">
+    <div class="posts-show-item">
+      <div class="post-user-name">
+        <img src="<%= "/user_images/#{@user.image_name}" %>">
+        <%= link_to(@user.name, "/users/#{@user.id}") %>
+      </div>
+      <div class="left title">タイトル <h3><%= @offer.title %></h3></div>
+      <div class="left title">内容</div>
+      <p>
+        <%= @offer.content %>
+      </p>
+      <div class="post-time">
+        <%= @offer.created_at %>
+      </div>
+      
+      <% if @user.id == @current_user.id %>
+        <div class="post-menus">
+          <%= link_to("編集", "/offers/#{@offer.id}/edit") %>
+          <%= link_to("削除", "/offers/#{@offer.id}/destroy", {method: "post"}) %>
+        </div>
+      <% else %>
+        <div class="post-menus">
+          <%= link_to("話を聞きたい！", "/interests/#{@offer.id}/create", {method: "post"}) %>
+        </div>
+      <% end %>
+      
+      <!-- 求人募集を投稿した人のみ「話を聞きたい！」ユーザーを閲覧できる -->
+      <% if @user.id == @current_user.id %>
+        <div class="left title">「話を聞きたい！」ユーザー</div>
+        <% @offerid.each do |offerid| %>
+          
+          <% user = User.find_by(id: offerid.user_id) %>
+        
+          <div class="users-index-item">
+          <!-- 指定されたHTMLを貼り付けてください -->
+          <div class="user-left">
+            <!-- <img>タグを用いて、プロフィール画像を表示してください-->
+            <img src="<%= "/user_images/#{user.image_name}" %>"
+          </div>
+          <div class="user-right">
+            <%= link_to(user.name, "/users/#{user.id}") %>
+          </div>
+        </div>
+        <% end %>
+    <% end %>
+      
+    </div>
+  </div>
+</div>

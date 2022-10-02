@@ -1,0 +1,27 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">プロフィールを編集する</h1>
+    <%= form_tag("/profiles/#{@profile.user_id}/update") do %>
+      <div class="form">
+        <div class="form-body">
+          <!-- 指定されたHTMLを貼り付けてください -->
+          
+          <div class="left title">現在の所属</div>
+          <textarea name="current"><%= @profile.current %></textarea>
+          <div class="left title">職種</div>
+          <textarea name="occupation"><%= @profile.occupation %></textarea>
+          <div class="left title">自己紹介</div>
+          <div class="item-description">やったこと、今やっていること、やりたいこと、好きなこと</div>
+          <textarea name="introduction"><%= @profile.introduction %></textarea>
+          <div class="left title">できること</div>
+          <textarea name="ability"><%= @profile.ability %></textarea>
+          <div class="left title">経歴</div>
+          <textarea name="career"><%= @profile.career %></textarea>
+          
+          <input type="submit" value="登録">
+          
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
