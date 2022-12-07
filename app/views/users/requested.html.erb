@@ -1,4 +1,3 @@
-<!-- 指定されたコードを貼り付けてください -->
 <div class="main user-show">
   <div class="container">
     <div class="user">
@@ -30,8 +29,6 @@
       <li><%= link_to("推薦コメント", "/users/#{@user.id}/recommends") %></li>
     </ul>
 
-    
-    <!-- 変数@likesに対してeach文を用いてください -->
     <% @requested.each do |requested| %> 
       <!-- 例)ユーザー2がユーザー1にリクエスト申請した。 「requesting」は、ユーザー2である。 -->
       <!-- 「requested.requesting_id」はかなり重要な方法論である。 -->
@@ -49,7 +46,6 @@
           <li><%= link_to("今はつながらない", "/connects/#{requesting.id}/refuse",{method: "post"}) %></li>
         </div>
       </div>
-    <!-- each文のendを追加してください -->
     <% end %>
   </div>
 </div>
