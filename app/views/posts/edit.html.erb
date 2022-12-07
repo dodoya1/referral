@@ -4,8 +4,6 @@
     <%= form_tag("/posts/#{@post.id}/update") do %>
       <div class="form">
         <div class="form-body">
-          <!-- 指定されたHTMLを貼り付けてください -->
-          <!-- @postのエラーが表示されるよう、「〇〇」の部分を書き換えてください -->
           <% @post.errors.full_messages.each do |message| %>
             <div class="form-error">
               <%= message %>
