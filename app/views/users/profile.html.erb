@@ -13,7 +13,6 @@
       <% end %>
     </div>
     
-    <!-- 指定されたコードを貼り付けてください -->
     <ul class="user-tabs">
       <li class="active"><%= link_to("プロフィール", "/users/#{@user.id}/profile") %></li>
       <li><%= link_to("投稿", "/users/#{@user.id}") %></li>
@@ -113,7 +112,7 @@
       </div>
     </div>
     <% else %>
-      <!-- 他人の譜rフィールページで、もし、プロフィールが登録されてない場合 -->
+      <!-- 他人のプロフィールページで、もし、プロフィールが登録されてない場合 -->
       <h1 class="form-heading">プロフィールが登録されていません</h1>
     <% end %>
     
