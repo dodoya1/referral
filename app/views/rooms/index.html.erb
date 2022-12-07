@@ -5,7 +5,6 @@
       <div class="form">
         <div class="form-body">
           
-          <!-- 以下の<%= %>を用いて、初期値が表示されるようにしてください -->
           <textarea name="message"></textarea>
           <input type="submit" value="送信">
         </div>
@@ -15,12 +14,10 @@
     <% @chats2.each do |chat| %>
       <div class="posts-index-item">
         <div class="post-left">
-          <!-- ユーザーの画像が表示されるように、以下のsrcに値を追加してください -->
           <img src="<%= "/user_images/#{chat.user.image_name}" %>">
         </div>
         <div class="post-right">
           <div class="post-user-name">
-            <!-- link_toメソッドを用いて、ユーザー詳細ページへのリンクを作成してください -->
             <%= link_to(chat.user.name, "/users/#{chat.user.id}") %>
           </div>
           <%= chat.message %>
