@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  # forbid_login_userメソッドを定義してください
   def forbid_login_user
     if @current_user
       flash[:notice] = "すでにログインしています"
