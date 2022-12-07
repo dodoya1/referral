@@ -4,8 +4,6 @@
     <%= form_tag("/offers/#{@offer.id}/update") do %>
       <div class="form">
         <div class="form-body">
-          <!-- 指定されたHTMLを貼り付けてください -->
-          <!-- @postのエラーが表示されるよう、「〇〇」の部分を書き換えてください -->
           <div class="left title">タイトル</div>
           <div class="item-description">最大30文字</div>
           <textarea name="title"><%= @offer.title %></textarea>
